@@ -1,11 +1,11 @@
-package com.example.model;
+package com.example.validator.model;
 
 import org.hibernate.validator.constraints.Email;
 
-import com.example.validators.ValidNip;
-import com.example.validators.ValidPesel;
-import com.example.validators.ValidPostalCode;
-import com.example.validators.ValidRegon;
+import com.example.validator.validators.ValidNip;
+import com.example.validator.validators.ValidPesel;
+import com.example.validator.validators.ValidPostalCode;
+import com.example.validator.validators.ValidRegon;
 
 public class RequestInfo {
 

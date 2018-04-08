@@ -1,4 +1,4 @@
-package com.example.validators;
+package com.example.validator.validators;
 
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.*;
@@ -12,7 +12,7 @@ import javax.validation.Payload;
 
 @Target({ METHOD, FIELD, ANNOTATION_TYPE })
 @Retention(RUNTIME)
-@Constraint(validatedBy = com.example.validators.RegonValidator.class)
+@Constraint(validatedBy = com.example.validator.validators.RegonValidator.class)
 @Documented
 public @interface ValidRegon {
 

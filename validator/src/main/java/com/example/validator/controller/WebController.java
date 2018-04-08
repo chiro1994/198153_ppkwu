@@ -1,4 +1,4 @@
-package com.example.controller;
+package com.example.validator.controller;
 
 import javax.validation.Valid;
 
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.model.RequestInfo;
+import com.example.validator.model.RequestInfo;
 
 @Controller
 public class WebController {
@@ -29,4 +29,5 @@ public class WebController {
 
 		return "successful";
 	}
+
 }

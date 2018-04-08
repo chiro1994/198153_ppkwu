@@ -1,4 +1,4 @@
-package com.example.validators;
+package com.example.validator.validators;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
