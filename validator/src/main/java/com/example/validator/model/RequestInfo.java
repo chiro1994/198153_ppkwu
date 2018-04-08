@@ -1,8 +1,7 @@
 package com.example.validator.model;
 
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.example.validator.validators.ValidNip;
 import com.example.validator.validators.ValidPesel;
@@ -12,7 +11,7 @@ import com.example.validator.validators.ValidRegon;
 public class RequestInfo {
 
 	@Email
-	@NotNull
+	@NotEmpty
 	private String email;
 	
 	@ValidNip
