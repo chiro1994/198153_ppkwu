@@ -6,7 +6,7 @@ import javax.validation.ConstraintValidatorContext;
 public class PostalCodeValidator implements ConstraintValidator<ValidPostalCode, String> {
 
 	private int min;
-	private boolean valid;
+	private static boolean valid;
 
 	@Override
 	public void initialize(ValidPostalCode validPostalCode) {
@@ -15,6 +15,18 @@ public class PostalCodeValidator implements ConstraintValidator<ValidPostalCode,
 
 	@Override
 	public boolean isValid(String postalCode, ConstraintValidatorContext context) {
+		
+		if(postalCode.matches("\\d{2}-\\d{3}")) {
+			valid = true;
+		}
+		else {
+			valid = false;
+		}
+
+		return valid;
+	}
+	
+	public static boolean isPostalCodeValid(String postalCode) {
 		
 		if(postalCode.matches("\\d{2}-\\d{3}")) {
 			valid = true;

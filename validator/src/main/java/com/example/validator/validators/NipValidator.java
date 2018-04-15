@@ -7,8 +7,8 @@ public class NipValidator implements ConstraintValidator<ValidNip, String> {
 
 	private int min;
 	
-	private byte NIP[] = new byte[10];
-	private boolean valid = false;
+	private static byte NIP[] = new byte[10];
+	private static boolean valid = false;
 	private static int DepNo[] = { 101, 102, 103, 104, 105, 106, 107, 108, 109, 111, 112, 113, 114, 115, 116, 117, 118,
 			119, 121, 122, 123, 124, 125, 126, 127, 128, 129, 131, 132, 133, 134, 135, 136, 137, 138, 139, 141, 142,
 			143, 144, 145, 146, 147, 148, 149, 151, 152, 153, 154, 155, 156, 157, 158, 159, 161, 162, 163, 164, 165,
@@ -338,7 +338,23 @@ public class NipValidator implements ConstraintValidator<ValidNip, String> {
 		return valid;
 	}
 	
-	private boolean checkSum() {
+	public static boolean isNipValid(String nip) {
+		if (nip.length() != 10) {
+			valid = false;
+		} else {
+			for (int i = 0; i < 10; i++) {
+				NIP[i] = Byte.parseByte(nip.substring(i, i + 1));
+			}
+			if (checkSum()) {
+				valid = true;
+			} else {
+				valid = false;
+			}
+		}
+		return valid;
+	}
+	
+	private static boolean checkSum() {
 		int sum;
 		sum = 6 * NIP[0] + 5 * NIP[1] + 7 * NIP[2] + 2 * NIP[3] + 3 * NIP[4] + 4 * NIP[5] + 5 * NIP[6] + 6 * NIP[7]
 				+ 7 * NIP[8];

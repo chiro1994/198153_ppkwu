@@ -6,8 +6,8 @@ import javax.validation.ConstraintValidatorContext;
 public class PeselValidator implements ConstraintValidator<ValidPesel, String> {
 
 	private int min;
-	private byte PESEL[] = new byte[11];
-	private boolean valid = false;
+	private static byte PESEL[] = new byte[11];
+	private static boolean valid = false;
 
 	@Override
 	public void initialize(ValidPesel validPesel) {
@@ -32,7 +32,24 @@ public class PeselValidator implements ConstraintValidator<ValidPesel, String> {
 		return valid;
 	}
 
-	public int getBirthYear() {
+	public static boolean isPeselValid(String pesel) {
+		
+		if (pesel.length() != 11) {
+			valid = false;
+		} else {
+			for (int i = 0; i < 11; i++) {
+				PESEL[i] = Byte.parseByte(pesel.substring(i, i + 1));
+			}
+			if (checkSum() && checkMonth() && checkDay()) {
+				valid = true;
+			} else {
+				valid = false;
+			}
+		}
+		return valid;
+	}
+	
+	public static int getBirthYear() {
 		int year;
 		int month;
 		year = 10 * PESEL[0];
@@ -53,7 +70,7 @@ public class PeselValidator implements ConstraintValidator<ValidPesel, String> {
 		return year;
 	}
 
-	public int getBirthMonth() {
+	public static int getBirthMonth() {
 		int month;
 		month = 10 * PESEL[2];
 		month += PESEL[3];
@@ -69,7 +86,7 @@ public class PeselValidator implements ConstraintValidator<ValidPesel, String> {
 		return month;
 	}
 
-	public int getBirthDay() {
+	public static int getBirthDay() {
 		int day;
 		day = 10 * PESEL[4];
 		day += PESEL[5];
@@ -88,7 +105,7 @@ public class PeselValidator implements ConstraintValidator<ValidPesel, String> {
 		}
 	}
 
-	private boolean checkSum() {
+	private static boolean checkSum() {
 		int sum = 1 * PESEL[0] + 3 * PESEL[1] + 7 * PESEL[2] + 9 * PESEL[3] + 1 * PESEL[4] + 3 * PESEL[5] + 7 * PESEL[6]
 				+ 9 * PESEL[7] + 1 * PESEL[8] + 3 * PESEL[9];
 		sum %= 10;
@@ -102,7 +119,7 @@ public class PeselValidator implements ConstraintValidator<ValidPesel, String> {
 		}
 	}
 
-	private boolean checkMonth() {
+	private static boolean checkMonth() {
 		int month = getBirthMonth();
 		int day = getBirthDay();
 		if (month > 0 && month < 13) {
@@ -112,7 +129,7 @@ public class PeselValidator implements ConstraintValidator<ValidPesel, String> {
 		}
 	}
 
-	private boolean checkDay() {
+	private static boolean checkDay() {
 		int year = getBirthYear();
 		int month = getBirthMonth();
 		int day = getBirthDay();
@@ -128,7 +145,7 @@ public class PeselValidator implements ConstraintValidator<ValidPesel, String> {
 		}
 	}
 
-	private boolean leapYear(int year) {
+	private static boolean leapYear(int year) {
 		if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
 			return true;
 		else
