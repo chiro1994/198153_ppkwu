@@ -10,7 +10,6 @@ import static com.example.validator.validators.NipValidator.isNipValid;
 import static com.example.validator.validators.PeselValidator.isPeselValid;
 import static com.example.validator.validators.RegonValidator.isRegonValid;
 import static com.example.validator.validators.EmailValidator.isEmailValid;
-
 import static com.example.validator.validators.PostalCodeValidator.isPostalCodeValid;
 
 @RestController
@@ -31,9 +30,9 @@ public class WebController {
 		return new ResponseBody(isRegonValid(regon));
 	}
 	
-	@RequestMapping("/postalCode")
-	public ResponseBody checkPostalCode(@RequestParam("postalCode") String postalCode) {
-		return new ResponseBody(isPostalCodeValid(postalCode));
+	@RequestMapping("/code")
+	public ResponseBody checkPostalCode(@RequestParam("code") String code) {
+		return new ResponseBody(isPostalCodeValid(code));
 	}
 	
 	@RequestMapping("/email")
